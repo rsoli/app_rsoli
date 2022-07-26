@@ -1,0 +1,47 @@
+
+<ion-content>
+  <form [formGroup]="form" (submit)="IniciarSesion()">
+    <ion-row>
+      <ion-col size="12">
+        <div class="logo">
+          <img src="assets/logos/logoblanco.png" height="70px"/>
+          <div class="titulo fuente-titulo">RASTREO SATELITAL</div>
+        </div>
+        <div class="input">
+          <ion-input formControlName="usuario" placeholder="Correo">
+          </ion-input>
+          <ion-input formControlName="password" type="password"  placeholder="Contraseña">
+          </ion-input>
+        </div>
+        
+        <div class="boton_aceptar fuente-titulo">
+          <ion-button type="submit" [disabled]="form.invalid"  color="primary"  expand="block">INICIAR SESIÓN</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row> 
+      <ion-col size="3">
+        <div class="linea"> 
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="texto-login fuente-titulo">
+          Redes sociales
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="linea">  
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row> 
+      <ion-col> 
+        <div class="iconos-login">
+          <img src="assets/iconos/facebook.svg" />
+          <img src="assets/iconos/instagram.svg" />
+          <img src="assets/iconos/whatsapp.svg" />
+        </div>
+      </ion-col>
+    </ion-row> 
+  </form>
+</ion-content>

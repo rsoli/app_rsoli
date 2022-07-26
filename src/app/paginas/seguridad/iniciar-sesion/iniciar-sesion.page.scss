@@ -1,0 +1,70 @@
+ion-content{
+    // --ion-background-color:#2196F3;
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 50px;
+    --background: linear-gradient( #1585cfee 40%, #1072b3ee   65%);
+    // --background: linear-gradient( #2195f4 30%, #017ad0 110%);
+
+}
+.logo{
+    text-align: center;
+}
+.input{
+    text-align: left;
+
+}
+.input ion-input{
+    border: 1px solid #fcfcfc87;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 100%;
+    color: rgb(235, 235, 235);
+    font-size: 15px;
+    --padding-end: 15px;
+    --padding-start: 15px;
+}
+ion-button{
+    --ion-color-primary: #1991e1ee;
+    border-radius: 7px;
+    margin-bottom: 60px;
+    font-size: 0.9rem;
+    color: #fff;
+    height: 40px;
+}
+.boton_aceptar{
+    margin-top: 45px;
+}
+.titulo{
+    color: #fff;
+    padding-top: 18px;
+    padding-bottom: 20px;     
+}
+.linea{
+    border-top: 1px solid #fff;
+}
+.texto-login{
+    margin-top: -9px;
+    color: #fff;
+    text-align: center;
+}
+.iconos-login{
+    text-align: center;
+    padding-top: 10px;
+}
+.iconos-login img{
+    margin: 5px;
+    height: 44px;
+}
+.fuente-titulo{
+    font-family: 'Prompt';
+    font-size: 0.9rem;
+    // font-weight: bold;
+    letter-spacing: 0.1rem;
+    //font-family: 'Raleway';
+    // text-shadow: -1px -1px 1px #aaa,
+    //     0px 4px 1px rgba(0,0,0,0.5),
+    //     4px 4px 5px rgba(0,0,0,0.7),
+    //     0px 0px 7px rgba(0,0,0,0.4);
+}
