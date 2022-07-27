@@ -1,0 +1,142 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>monitoreo</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<app-header titulo="Monitoreo" boton_atras="true">
+</app-header>
+
+<ion-content>
+  <div class="boton_filtro">
+    <ion-icon name="funnel-outline" id="open-modal" expand="block"></ion-icon>
+  </div>
+  <div class="map" id="map">
+  </div>
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+
+      <app-header titulo="Filtros" boton_atras="false"></app-header>
+
+      <ion-content class="ion-padding">
+
+
+        <ion-row>
+          <ion-col size="12">
+            <div class="titulo_formulario fuente-titulo">
+              Tipo de monitoreo
+            </div>
+            <div class="espacio_formulario">
+              <ion-select placeholder="Seleccionar tipo de monitoreo" (ionChange)="monitoreo_seleccionado($event)"  [(ngModel)]="tipo_monitoreo_seleccionado"  multiple="false">
+                <ion-select-option *ngFor="let m of tipo_monitoreo" [value]="m.code" >{{m.nombre}}</ion-select-option>
+              </ion-select>
+            </div>
+          </ion-col>
+        </ion-row>
+        
+
+        <ion-row>
+          <ion-col size="12">
+            <div class="titulo_formulario fuente-titulo">
+              Vehículos
+            </div>
+            <div class="espacio_formulario">
+              <ion-select placeholder="Seleccionar vehículo" [(ngModel)]="vehiculo_seleccionado" [multiple]="bandera_tipo_monitoreo">
+                <ion-select-option *ngFor="let v of vehiculo" [value]="v" >{{v.placa}}</ion-select-option>
+              </ion-select>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row [hidden]="bandera_tipo_monitoreo" >
+          <ion-col size="12">
+            <div class="titulo_formulario fuente-titulo">
+              Fecha
+            </div>
+            <div class="espacio_formulario">
+              <ion-input
+              value="{{ fecha_ratreo_texto  }}"
+              id="trigger_fecha"
+              class="ion-text-start">
+              </ion-input>
+              <ion-popover trigger="trigger_fecha" size="cover" >
+                <ng-template>
+                  <ion-datetime
+                    presentation="date"
+                    [(ngModel)]="fecha_ratreo"
+                    (ngModelChange)="formatoFecha($event)"
+                    displayFormat="DD/MM/YYYY" 
+                    
+                  ></ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row [hidden]="bandera_tipo_monitoreo" >
+          <ion-col size="12">
+            <div class="titulo_formulario fuente-titulo">
+              Hora inicio
+            </div>
+            <div class="espacio_formulario">
+              <ion-input
+              value="{{ hora_inicio }}"
+              id="trigger_hora_inicio"
+              class="ion-text-start" >
+              </ion-input>
+              <ion-popover trigger="trigger_hora_inicio" size="cover" >
+                <ng-template>
+                  <ion-datetime
+                    presentation="time"
+                    [(ngModel)]="hora_inicio"
+                    locale="sl-SI">
+                  </ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </div>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row [hidden]="bandera_tipo_monitoreo" >
+          <ion-col size="12">
+            <div class="titulo_formulario fuente-titulo">
+              Hora fin
+            </div>
+            <div class="espacio_formulario">
+              <ion-input
+              value="{{ hora_fin }}"
+              id="trigger_fecha_fin"
+              class="ion-text-start">
+              </ion-input>
+              <ion-popover trigger="trigger_fecha_fin" size="cover">
+                <ng-template>
+                  <ion-datetime
+                    presentation="time"
+                    [(ngModel)]="hora_fin"
+                    locale="sl-SI"
+                  ></ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <div class="espacio_formulario">
+              <ion-button color="primary" (click)="aplicar_filtros()">Aceptar</ion-button>
+            </div>
+            <div class="espacio_formulario">
+              <ion-button color="danger" (click)="cerrar_filtros()">Cancelar</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

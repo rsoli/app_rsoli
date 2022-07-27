@@ -5,6 +5,7 @@ import{UsuarioService} from '../../../servicios/usuario.service';
 import { Router} from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+// import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -22,7 +23,8 @@ export class IniciarSesionPage implements OnInit {
     private usuario_servicio:UsuarioService,
     private router: Router,
     public toastController: ToastController,
-    private loadingController:LoadingController
+    private loadingController:LoadingController,
+    // private storage: Storage
   ) { }
 
   ngOnInit() {
@@ -37,16 +39,21 @@ export class IniciarSesionPage implements OnInit {
   }
   async IniciarSesion(){
     // this.visible_iniciar_sesion=false;
-    // this.loading("Iniciando Sesión");
-
+  
     let nuevo_usuario = new UsuarioModelo;
     nuevo_usuario.email=this.form.value.usuario.trim();
     nuevo_usuario.password=this.form.value.password.trim();
     await this.mostrar_loading();
     this.usuario_servicio.post_iniciar_sesion(nuevo_usuario).subscribe(data=>{
       this.ocultar_loading();
-        // localStorage.removeItem("accesos");
-        // localStorage.setItem('accesos', JSON.stringify(data)); 
+
+       
+      localStorage.removeItem("accesos");
+      localStorage.setItem('accesos', JSON.stringify(data));
+      
+
+      // localStorage.removeItem("accesos");
+      // localStorage.setItem('accesos', JSON.stringify(data)); 
         // this.persona_label=JSON.parse(localStorage.getItem('accesos')|| '{}').usuario.persona;
         // this.correo_label=JSON.parse(localStorage.getItem('accesos')|| '{}').usuario.correo;
         this.router.navigate(['/inicio']); 

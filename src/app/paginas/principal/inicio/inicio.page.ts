@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioPage implements OnInit {
 
+  map: L.Map
   constructor() { }
 
   ngOnInit() {

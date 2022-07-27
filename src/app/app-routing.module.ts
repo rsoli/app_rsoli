@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./paginas/principal/inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'monitoreo',
+    loadChildren: () => import('./paginas/rastreo/monitoreo/monitoreo.module').then( m => m.MonitoreoPageModule)
+  },
 ];
 
 @NgModule({

@@ -12,8 +12,9 @@ import { IniciarSesionPage } from './iniciar-sesion.page';
     IonicModule,
     IniciarSesionPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
   ],
-  declarations: [IniciarSesionPage]
+  declarations: [IniciarSesionPage],
+  
 })
 export class IniciarSesionPageModule {}
