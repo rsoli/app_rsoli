@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Platform, ToastController } from '@ionic/angular';
 import * as L from 'leaflet';
 import 'leaflet-rotatedmarker';
+
+import 'leaflet.markercluster';
 
 import { ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
@@ -15,7 +17,7 @@ import { LoadingController } from '@ionic/angular';
   templateUrl: './monitoreo.page.html',
   styleUrls: ['./monitoreo.page.scss'],
 })
-export class MonitoreoPage implements OnInit {
+export class MonitoreoPage implements OnInit ,OnDestroy{
 
   loading: HTMLIonLoadingElement;
 
@@ -24,6 +26,7 @@ export class MonitoreoPage implements OnInit {
   marker: any;
   lista_marcadores:any;
   polylines:any;
+  markerCluster = L.markerClusterGroup(); // intentar agregar cluster
 
   name: string; //modal filtro
   
@@ -44,6 +47,7 @@ export class MonitoreoPage implements OnInit {
   bandera_tipo_monitoreo:boolean=true;
   limite_seleccion_vehiculos:number=1;
   id_interval:any;
+
 
   
   constructor(
@@ -257,6 +261,7 @@ export class MonitoreoPage implements OnInit {
      }
   }
   AgregarMarcador(marcadores:any) {
+    
 
     this.borrarMarcadores();
     this.lista_marcadores=[];
@@ -336,8 +341,15 @@ export class MonitoreoPage implements OnInit {
           }
         }
 
-        if(indice.tiempo_parqueo=='00:00:00'){
+        if( String( this.tipo_monitoreo_seleccionado) =="tiempo_real"){//nueva logica agregado
+          this.marker = L.marker([indice.latitude, indice.longitude], icon);
+        }
+        else{
           this.marker = L.marker([indice.latitude, indice.longitude], icon).addTo(this.map);
+        }
+
+        if(indice.tiempo_parqueo=='00:00:00' ||  String( this.tipo_monitoreo_seleccionado) =="tiempo_real"){
+          // this.marker = L.marker([indice.latitude, indice.longitude], icon);
           this.marker.bindPopup("<div font-size: 10px; z-index:1000' > <div style='text-align: center;' > <b>DATOS DEL MOTORIZADO</b></div><br/>"+
           "<b>Placa :</b>  "+indice.placa+
           " <br> <b>Fecha :</b>  "+indice.devicetime+
@@ -346,7 +358,8 @@ export class MonitoreoPage implements OnInit {
           " <br> <b>Ubicación :</b> </br>"+indice.address+ 
           "<div> ");
         }else{
-          this.marker = L.marker([indice.latitude, indice.longitude], icon).addTo(this.map);
+
+          // this.marker = L.marker([indice.latitude, indice.longitude], icon).addTo(this.map);
           this.marker.bindPopup("<div font-size: 10px; z-index:1000' > <div style='text-align: center;' > <b>DATOS DEL MOTORIZADO</b></div><br/>"+
           "<b>Placa :</b>  "+indice.placa+
           " <br> <b>Fecha :</b>  "+indice.devicetime+
@@ -357,12 +370,19 @@ export class MonitoreoPage implements OnInit {
           "<div> ");
         }
         
-        this.lista_marcadores.push(this.marker);
+
+
+        this.lista_marcadores.push(this.marker);   // ver si quitar o no por cluster agregado
+
+        if( String( this.tipo_monitoreo_seleccionado) =="tiempo_real"){
+          this.markerCluster.addLayer(this.marker); // agregar cluster
+          this.map.addLayer(this.markerCluster);// agregar cluster
+        }
+
 
         linea_rutas.push(this.marker.getLatLng());
         lat=indice.latitude;
         lon=indice.longitude;
-
 
     }
 
@@ -383,13 +403,19 @@ export class MonitoreoPage implements OnInit {
         this.map.fitBounds(this.polylines.getBounds());
       }
       if(this.contador_zoom_mapa==0){
-        this.map.setView([lat, lon], 16);  
+        if(linea_rutas.length == 1){ //nueva logica agregado para ionic
+          this.map.setView([lat, lon], 16);  
+        }
+        else{
+          if(String( this.tipo_monitoreo_seleccionado) !="tiempo_real"){
+            this.map.setView([lat, lon], 14);  
+          }else{
+            this.map.setView([-16.6574403011881, -64.95190911770706], 5);  
+          }
+        }
       }else{
-        if(linea_rutas.length==1){
+        if(linea_rutas.length == 1){ //nueva logica agregado para ionic
           this.map.setView([lat, lon]);  
-        }else{
-          this.map.setView([lat, lon], 5);  
-          // agregar logica en caso de ser necesario 
         }
       }
       this.contador_zoom_mapa++;
@@ -400,21 +426,40 @@ export class MonitoreoPage implements OnInit {
     }
 
     //solucion a problema de boton close de popop
-    document.querySelector('.leaflet-pane.leaflet-popup-pane')!.addEventListener('click', event => {
-      event.preventDefault();
-    });
+    try {
+      document.querySelector('.leaflet-pane.leaflet-popup-pane')!.addEventListener('click', event => {
+        event.preventDefault();
+      });
+    } catch (error) {
+      //borrar listener del clik close de marker
+      document.removeEventListener(
+        ".leaflet-pane.leaflet-popup-pane",
+        function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        },
+        false
+        );
+    }
+
     
   }
   borrarMarcadores() {
     if(this.lista_marcadores){
+
       for (let indice of this.lista_marcadores){
         this.map.removeLayer(indice);
+
       }
     }
+    //borramos el cluster anterior del mapa
+    this.map.removeLayer(this.markerCluster);
+    this.markerCluster=L.markerClusterGroup();;
+  
   }
   aplicar_filtros() {
 
-    this.map.setView([-16.6574403011881, -64.95190911770706], 5); 
+    this.map.setView([-16.6574403011881, -64.95190911770706], 5);  //nueva logica agregado para ionic
 
     console.log("ver aplciar filtros ",this.tipo_monitoreo_seleccionado );
     
@@ -477,6 +522,7 @@ export class MonitoreoPage implements OnInit {
   ngOnDestroy() {//no es necesario invocarlo se destruye automatico en ionic
     if (this.id_interval) {
       clearInterval(this.id_interval);
+      console.log('llego destroy');
     }
   }
   onWillDismiss(event: Event) {

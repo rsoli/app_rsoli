@@ -7,6 +7,7 @@ import { MonitoreoPageRoutingModule } from './monitoreo-routing.module';
 import { MonitoreoPage } from './monitoreo.page';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
 
+// import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
     FormsModule,
     IonicModule,
     MonitoreoPageRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    // LeafletMarkerClusterModule
   ],
   declarations: [MonitoreoPage]
 })

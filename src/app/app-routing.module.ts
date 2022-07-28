@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'monitoreo',
     loadChildren: () => import('./paginas/rastreo/monitoreo/monitoreo.module').then( m => m.MonitoreoPageModule)
   },
+  {
+    path: 'vehiculo',
+    loadChildren: () => import('./paginas/rastreo/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { UsuarioPageRoutingModule } from './usuario-routing.module';
-import { UsuarioPage } from './usuario.page';
+import { VehiculoPageRoutingModule } from './vehiculo-routing.module';
+import { VehiculoPage } from './vehiculo.page';
+
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
 
 
@@ -11,11 +12,10 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule,
-    UsuarioPageRoutingModule,
+    VehiculoPageRoutingModule,
     ComponentesModule
   ],
-  declarations: [UsuarioPage]
+  declarations: [VehiculoPage]
 })
-export class UsuarioPageModule {}
+export class VehiculoPageModule {}
