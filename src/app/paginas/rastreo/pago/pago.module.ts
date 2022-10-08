@@ -3,19 +3,20 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { MonitoreoPageRoutingModule } from './monitoreo-routing.module';
-import { MonitoreoPage } from './monitoreo.page';
+import { PagoPageRoutingModule } from './pago-routing.module';
+import { PagoPage } from './pago.page';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MonitoreoPageRoutingModule,
-    ComponentesModule
+    PagoPageRoutingModule,
+    ComponentesModule,
+    HttpClientModule
   ],
-  declarations: [MonitoreoPage]
+  declarations: [PagoPage]
 })
-export class MonitoreoPageModule {}
+export class PagoPageModule {}

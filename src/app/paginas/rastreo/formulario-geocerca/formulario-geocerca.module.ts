@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { MonitoreoPageRoutingModule } from './monitoreo-routing.module';
-import { MonitoreoPage } from './monitoreo.page';
+
+import { FormularioGeocercaPageRoutingModule } from './formulario-geocerca-routing.module';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
+
+import { FormularioGeocercaPage } from './formulario-geocerca.page';
 
 
 @NgModule({
@@ -13,9 +15,9 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    MonitoreoPageRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    FormularioGeocercaPageRoutingModule
   ],
-  declarations: [MonitoreoPage]
+  declarations: [FormularioGeocercaPage]
 })
-export class MonitoreoPageModule {}
+export class FormularioGeocercaPageModule {}

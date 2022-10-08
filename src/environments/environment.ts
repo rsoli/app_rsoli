@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://rsoli.com/rastreo/rastreo/public/api"
+  //apiUrl: "https://kolosu.com/rastreo/rastreo/public/api"
+  apiUrl: "https://www.kolosu.com/public/api"
 };
 
 /*

@@ -15,11 +15,6 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/seguridad/usuario/usuario.module').then( m => m.UsuarioPageModule)
   },
   {
-    path: '',
-    redirectTo: 'iniciar-sesion',
-    pathMatch: 'full'
-  },
-  {
     path: 'inicio',
     loadChildren: () => import('./paginas/principal/inicio/inicio.module').then( m => m.InicioPageModule)
   },
@@ -28,9 +23,27 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/rastreo/monitoreo/monitoreo.module').then( m => m.MonitoreoPageModule)
   },
   {
+    path: 'pago',
+    loadChildren: () => import('./paginas/rastreo/pago/pago.module').then( m => m.PagoPageModule)
+  },
+  {
+    path: 'geocerca',
+    loadChildren: () => import('./paginas/rastreo/geocerca/geocerca.module').then( m => m.GeocercaPageModule)
+  },
+  {
+    path: 'formulario-geocerca',
+    loadChildren: () => import('./paginas/rastreo/formulario-geocerca/formulario-geocerca.module').then( m => m.FormularioGeocercaPageModule)
+  },
+  {
     path: 'vehiculo',
     loadChildren: () => import('./paginas/rastreo/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
   },
+  {
+    path: '',
+    redirectTo: 'iniciar-sesion',
+    pathMatch: 'full'
+  }
+
 ];
 
 @NgModule({

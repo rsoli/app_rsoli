@@ -1,14 +1,11 @@
 ion-toolbar {
     --color: #ffffff;
-    --background: #1585cfee;
+    --background:  #2196f3;
     // --background: linear-gradient( #1585cfee 40%, #147ec5ee   65%);
     --border-width: 0px !important;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
-    
-    font-size: 1.3rem;
-    font-family: 'Prompt';
-    // font-weight: bold;
-    letter-spacing: 0.1rem;
+    font-size: 1.0rem;
+    font-family: 'Verdana';
 }

@@ -31,18 +31,16 @@
 ion-select  {
     border: 1px solid rgba(173, 168, 168, 0.2);
     width: 100%;
-    font-family: 'Prompt';
-    letter-spacing: 0.1rem;
+    font-family: 'Verdana';
 }
 ion-input{
     border: 1px solid rgba(173, 168, 168, 0.2);
     width: 100%;
-    font-family: 'Prompt';
-    letter-spacing: 0.1rem;
+    font-family: 'Verdana';
 }
 ion-button{
     width: 100%;
-    --ion-color-primary: #1991e1ee;
+    --ion-color-primary: #2599f7;
     border-radius: 7px;
     font-size: 0.9rem;
     height: 40px;
@@ -51,11 +49,22 @@ ion-button{
     text-align: left;
 }
 .espacio_formulario{
-    padding-top: 10px !important;
+    padding-top: 2px !important;
 }
 .fuente-titulo{
-    font-family: 'Prompt';
+    font-family: 'Verdana';
     font-size: 0.9rem;
     font-weight: bold;
-    letter-spacing: 0.1rem;
+}
+
+ion-toolbar {
+    --color: #ffffff;
+    --background:  #2196f3;
+    // --background: linear-gradient( #1585cfee 40%, #147ec5ee   65%);
+    --border-width: 0px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    font-size: 1.0rem;
+    font-family: 'Verdana';
 }

@@ -3,7 +3,7 @@
 
 <ion-content>
 
-    <ion-button [routerLink]="['/monitoreo']">
+    <!-- <ion-button [routerLink]="['/monitoreo']">
       <ion-icon slot="start" name="add"></ion-icon>
       Monitoreo
     </ion-button>
@@ -16,6 +16,114 @@
     <ion-button [routerLink]="['/vehiculo']">
       <ion-icon slot="start" name="add"></ion-icon>
       Vehículos
-    </ion-button>
+    </ion-button> -->
+
+
+    <div style="height: 250px; background: linear-gradient(#2196f3, #188be9 );  ;position: relative;">
+      <div>
+        <ion-img class="img_menu"  src="./assets/logos/logoblanco.png"></ion-img>
+      </div>
+      <div class="fuente-titulo" style="text-align: center;color:white;font-size: 15px;margin-top: 15PX;">SISTEMA DE RASTREO SATELITAL</div>
+    </div>
+  
+   
+  
+  
+    <div style="position: absolute; top: 0; left: 0; margin-top: 160px;">
+  
+      <ion-list style="background:rgba(255, 255, 255, 0)">
+
+        <ion-grid>
+  
+  
+          <ion-row>
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" routerLink="/usuario">
+                    <div>
+                      <ion-img class="img_menu"  src="./assets/iconos/usuario.png"></ion-img>
+                    </div>
+                    <div class="text_menu">
+                      Usuarios
+                    </div>
+                </div>
+              </div>
+            </ion-col>
+  
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" routerLink="/vehiculo">
+                  <div>
+                    <ion-img class="img_menu"  src="./assets/iconos/camion.png"></ion-img>
+                  </div>
+                  <div class="text_menu">
+                    Vehiculos
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+  
+          </ion-row>
+        
+          <ion-row>
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" >
+                  <div>
+                    <ion-img class="img_menu"  src="./assets/iconos/mantenimiento.png"></ion-img>
+                  </div>
+                  <div class="text_menu">
+                    Mantenimiento
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" routerLink="/geocerca">
+                  <div>
+                    <ion-img class="img_menu"  src="./assets/iconos/geocerca.png"></ion-img>
+                  </div>
+                  <div class="text_menu">
+                    Geocerca
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+    
+          <ion-row>
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" routerLink="/monitoreo">
+                  <div>
+                    <ion-img class="img_menu" src="./assets/iconos/map.png"></ion-img>
+                  </div>
+                  <div class="text_menu">
+                    Monitoreo
+                  </div>
+                </div>
+  
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="btnprincipal" >
+                <div  class="btnprincipal2" routerLink="/pago">
+                  <div>
+                    <ion-img class="img_menu"  src="./assets/iconos/pagos.png"></ion-img>
+                  </div>
+                  <div class="text_menu" >
+                    Pagos
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+    
+        </ion-grid>
+    
+      </ion-list>
+  
+    </div>
 
 </ion-content>

@@ -1,20 +1,21 @@
-<ion-header style="border-bottom: 0px solid #fff;">
+<ion-header class="ion-no-border">
+
   <ion-toolbar>
 
     <ion-buttons slot="start">
-      <ion-back-button *ngIf="boton_atras=='true' "  slot="icon-only" icon="arrow-back-outline" style="color: white ;" defaultHref="/" text=""  mode="ios"> </ion-back-button> 
+        <ion-back-button  *ngIf="boton_atras=='true' "  slot="icon-only" icon="arrow-back-outline" style="color: white ;zoom:0.9" defaultHref="/" text=""  mode="ios"> </ion-back-button> 
+        <div *ngIf="boton_atras=='false' " style="width: 33px; height: 10px; background: rgba(255, 255, 255, 0);"></div>
     </ion-buttons>
 
+      <div style="text-align: center;margin-top: 5px;padding-bottom: 5px;">
+        {{titulo}}
+      </div>
 
-    <div style="text-align: center;margin-top: 5px;padding-bottom: 5px;">
-      <!-- <ion-img class="img_menu" style="height: 35px;"  src="../../../assets/logos/logoblanco.png"></ion-img> -->
-      {{titulo}}
-    </div>
-
-    <ion-buttons slot="end">
-    </ion-buttons>
+    <ion-buttons slot="end" (click)="abrir_sidebar()" >
+      <ion-icon style="zoom:2" expand="block"  name="menu-outline"  ></ion-icon>
+    </ion-buttons> 
 
   </ion-toolbar>
 
-
 </ion-header>
+

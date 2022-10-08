@@ -6,6 +6,9 @@ import { VehiculoPageRoutingModule } from './vehiculo-routing.module';
 import { VehiculoPage } from './vehiculo.page';
 
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
+import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 
 
 @NgModule({
@@ -14,8 +17,14 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
     FormsModule,
     IonicModule,
     VehiculoPageRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    HttpClientModule
+
   ],
-  declarations: [VehiculoPage]
+  declarations: [VehiculoPage],
+  providers: [
+    AndroidPermissions,
+    SMS
+  ]
 })
 export class VehiculoPageModule {}

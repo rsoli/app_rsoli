@@ -164,9 +164,9 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
     ];
     this.tipo_monitoreo_seleccionado=['tiempo_real' ];
   }
-  IniciarFiltros(){
+  async IniciarFiltros(){
 
-    this.mostrar_loading();
+    await this.mostrar_loading();
     this.monitoreo_servicio.get_filtros_monitoreo().subscribe(data=>{
       this.ocultar_loading();
       this.vehiculo=JSON.parse(JSON.stringify(data)).lista_vehiculo;
@@ -457,7 +457,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
     this.markerCluster=L.markerClusterGroup();;
   
   }
-  aplicar_filtros() {
+  async aplicar_filtros() {
 
     this.map.setView([-16.6574403011881, -64.95190911770706], 5);  //nueva logica agregado para ionic
 
@@ -484,7 +484,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
               if(!this.hora_fin){
                 this.alerta('El campo hora fin es requerido');
               }else{
-                this.mostrar_loading();
+                await this.mostrar_loading();
                 this.ejecutar_filtros();
                 // this.visibleSidebar1=false;
                 this.modal.dismiss(null, 'cancel');
@@ -495,7 +495,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
           }
         }
         else{
-          this.mostrar_loading();
+          await this.mostrar_loading();
           this.TiempoInterval();
           // this.visibleSidebar1=false;
           this.modal.dismiss(null, 'cancel');

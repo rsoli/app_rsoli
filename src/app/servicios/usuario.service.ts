@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UsuarioModelo } from '../modelos/usuario-modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,18 @@ export class UsuarioService {
     this.actualizar_accesos();
     return this.http.get(this.baseURL+'cerrar_sesion',this.headers_token);
   }
+  get_usuarios(){
+    this.actualizar_accesos();
+    return this.http.get(this.baseURL + 'get_usuarios', this.headers_token);
+  }
+  get_usuario(id:number){
+    this.actualizar_accesos();
+    return this.http.get(this.baseURL + 'get_usuario/'+id, this.headers_token);
+  }
+  post_usuario(usuario:UsuarioModelo){
+    this.actualizar_accesos();
+    const body=JSON.stringify(usuario);
+    return this.http.post(this.baseURL + 'post_usuario',body,this.headers_token);
+  }
+  
 }
