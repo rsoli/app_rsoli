@@ -10,7 +10,7 @@
       <ion-row>
         <ion-col size="12">
           <div style="text-align: right; padding-top: 12px;padding-right: 12px;font-size: 1.6rem;text-transform: uppercase;color: black;">
-            <ion-icon name="add" (click)="formulario_geocerca(0)" style="width: 40px;"></ion-icon>
+            <ion-icon name="add" (click)="formulario_geocerca(0,'','','','')" style="width: 40px;"></ion-icon>
           </div>
         </ion-col>
       </ion-row>
@@ -55,7 +55,7 @@
                                         </ion-col>
                                         <ion-col size="3">
                                           <div style="text-align: right;padding-right: 20px; padding-top: 10px; color: black;">
-                                            <ion-icon (click)="mostrar_opciones_geocerca(item.id)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
+                                            <ion-icon (click)="mostrar_opciones_geocerca(item.id,item.nombre_geocerca,item.descripcion,item.area,item.tipo_geocerca)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
                                           </div>
                                         </ion-col>
                                       </ion-row>

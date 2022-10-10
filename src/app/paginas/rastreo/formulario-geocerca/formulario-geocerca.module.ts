@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,6 +9,9 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
 
 import { FormularioGeocercaPage } from './formulario-geocerca.page';
 
+import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { GeocercaPage } from '../../rastreo/geocerca/geocerca.page';
 
 @NgModule({
   imports: [
@@ -16,8 +19,12 @@ import { FormularioGeocercaPage } from './formulario-geocerca.page';
     FormsModule,
     IonicModule,
     ComponentesModule,
-    FormularioGeocercaPageRoutingModule
+    FormularioGeocercaPageRoutingModule,
+    ReactiveFormsModule,
+    LeafletModule,
+    LeafletDrawModule
   ],
-  declarations: [FormularioGeocercaPage]
+  declarations: [FormularioGeocercaPage],
+  providers:[GeocercaPage]
 })
 export class FormularioGeocercaPageModule {}

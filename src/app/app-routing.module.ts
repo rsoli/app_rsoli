@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/rastreo/geocerca/geocerca.module').then( m => m.GeocercaPageModule)
   },
   {
-    path: 'formulario-geocerca',
+    path: 'formulario-geocerca/:id/:nombre_geocerca/:descripcion/:area/:tipo_geocerca',
     loadChildren: () => import('./paginas/rastreo/formulario-geocerca/formulario-geocerca.module').then( m => m.FormularioGeocercaPageModule)
   },
   {

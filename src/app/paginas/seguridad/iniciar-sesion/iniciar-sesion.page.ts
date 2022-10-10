@@ -31,6 +31,11 @@ export class IniciarSesionPage implements OnInit {
     this.IniciarFormulario();
   }
   IniciarFormulario(){
+
+    if(localStorage.getItem('accesos') != undefined){
+      this.router.navigate(['/inicio']); 
+    }
+
     this.form = new FormGroup({
       usuario: new FormControl(this.usuario, [Validators.required,Validators.maxLength(40)]),
       password: new FormControl(this.usuario, [Validators.required, Validators.maxLength(40)]),

@@ -1,3 +1,107 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-menu side="start" menu-id="sidebar" contentId="main">
+
+    <ion-content>
+      <ion-row>
+        <ion-col size="12">
+          <div style="text-align: right; padding-right: 15px;padding-top: 15px;">
+            <ion-icon (click)="cerrar_sidebar()" style="color: black;zoom: 1.5;" name="close-outline"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <div class="contenido_logo">
+            <ion-img class="img_menu"  src="./assets/logos/logo_color.png"></ion-img>
+          </div>
+          <div class="usuario">
+            {{persona_label}}
+          </div>
+          <div class="correo">
+            {{correo_label}}
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-list>
+
+        <ion-row>
+          <ion-col size="12">
+            <div class="lista_menu">
+
+              <ion-row>
+                <ion-col size="2"> <ion-icon (click)="cambio_rutas('inicio')"  class="icono_menu" name="home-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('inicio')">Inicio</div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="2"><ion-icon (click)="cambio_rutas('usuario')"  class="icono_menu" name="person-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('usuario')">Usuario</div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="2"><ion-icon (click)="cambio_rutas('vehiculo')"  class="icono_menu" name="car-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('vehiculo')">Vehículos</div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row >
+                <ion-col size="2"><ion-icon  class="icono_menu" name="construct-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">Mantenimiento</ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="2"><ion-icon (click)="cambio_rutas('geocerca')"  class="icono_menu" name="layers-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('geocerca')"> 
+                    Geocerca
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row >
+                <ion-col size="2"><ion-icon (click)="cambio_rutas('monitoreo')"  class="icono_menu" name="location-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('monitoreo')" >
+                    Monitoreo
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row >
+                <ion-col size="2"><ion-icon (click)="cambio_rutas('pago')" class="icono_menu" name="cash-outline"></ion-icon></ion-col>
+                <ion-col size="10" class="texto_menu">
+                  <div (click)="cambio_rutas('pago')">Pagos</div>
+                </ion-col>
+              </ion-row>
+
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <br><br>
+            <div class="cerrar_sesion" (click)="cerrar_sesion()">
+              <div style="display:inline;">
+                <ion-icon style="zoom: 1.2;vertical-align: bottom;" name="log-out-outline"></ion-icon>
+              </div>
+              <div style="display:inline;padding-top: 15;">
+                Cerrar sesión
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

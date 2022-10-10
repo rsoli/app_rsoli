@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,18 @@ export class HeaderComponent implements OnInit {
   @Input() boton_atras:string='true';
   
   constructor(
-    private menu: MenuController
+    private menu: MenuController,
+    private router: Router,
   ) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.verificar_sesion();
+  }
+  verificar_sesion(){
+    if(localStorage.getItem('accesos') == undefined){
+      this.router.navigate(['/iniciar-sesion']); 
+    }
+  }
   abrir_sidebar() {
     this.menu.enable(true, 'sidebar');
     this.menu.open('sidebar');
