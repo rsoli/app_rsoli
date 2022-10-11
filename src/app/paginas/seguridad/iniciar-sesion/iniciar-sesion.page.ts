@@ -6,6 +6,8 @@ import { Router} from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 // import { Storage } from '@capacitor/storage';
+import { AppComponent } from '../../../app.component';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -24,11 +26,18 @@ export class IniciarSesionPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private loadingController:LoadingController,
+    private AppComponent:AppComponent,
+    private menu: MenuController,
     // private storage: Storage
   ) { }
 
   ngOnInit() {
     this.IniciarFormulario();
+    this.DesactivarSideBar();  
+  }
+  DesactivarSideBar(){
+    this.menu.close('sidebar');
+    this.menu.enable(false, 'sidebar');
   }
   IniciarFormulario(){
 
@@ -59,8 +68,8 @@ export class IniciarSesionPage implements OnInit {
 
       // localStorage.removeItem("accesos");
       // localStorage.setItem('accesos', JSON.stringify(data)); 
-        // this.persona_label=JSON.parse(localStorage.getItem('accesos')|| '{}').usuario.persona;
-        // this.correo_label=JSON.parse(localStorage.getItem('accesos')|| '{}').usuario.correo;
+      this.AppComponent.correo_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.correo;
+      this.AppComponent.persona_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.persona;
         this.router.navigate(['/inicio']); 
         console.log("ver datos ",data);
         
