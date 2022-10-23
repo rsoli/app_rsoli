@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -25,9 +27,8 @@ export class AppComponent implements OnInit {
     public toastController: ToastController,
   ) {}
   ngOnInit(): void {
-    
-  }
 
+  }
   async cerrar_sesion(){
 
     await this.mostrar_loading();

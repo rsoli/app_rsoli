@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { VehiculoPageRoutingModule } from './vehiculo-routing.module';
 import { VehiculoPage } from './vehiculo.page';
@@ -10,11 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     VehiculoPageRoutingModule,
     ComponentesModule,

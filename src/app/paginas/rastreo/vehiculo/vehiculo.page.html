@@ -46,7 +46,7 @@
                                         </ion-col>
                                         <ion-col size="3">
                                           <div style="text-align: right;padding-right: 20px; padding-top: 10px; color: #007bff;">
-                                            <ion-icon (click)="mostrar_opciones_vechiulo(item.placa,item.linea_gps)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
+                                            <ion-icon (click)="mostrar_opciones_vechiulo(item.placa,item.linea_gps,item.id_vehiculo)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
                                           </div>
                                         </ion-col>
                                       </ion-row>
@@ -138,4 +138,75 @@
     
   </ion-list>
 
+
+
+
+
+
+
+
+  <ion-modal [isOpen]="isModalOpen"  (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+
+      <!-- <app-header titulo="Filtros" boton_atras="false"></app-header> -->
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+            <div style="text-align: center;margin-top: 5px;padding-bottom: 5px;">
+              Filtros
+            </div>
+        </ion-toolbar>
+      </ion-header>
+      
+
+
+      <br>
+      <ion-content class="ion-padding">
+
+        <form [formGroup]="form_geocerca" (submit)="GuardarGeocerca()">
+
+            <ion-row>
+              <ion-col size="12">
+                <div class="titulo_formulario fuente-titulo">
+                  Geocerca
+                </div>
+                <div class="espacio_formulario">
+                  <ion-select placeholder="Seleccionar tipo de monitoreo"  formControlName="lista_geocercas_seleccionados"  multiple="true">
+                    <ion-select-option *ngFor="let m of lista_geocercas" [value]="m.id" >{{m.nombre_geocerca}}</ion-select-option>
+                  </ion-select>
+                </div>
+              </ion-col>
+            </ion-row>
+            
+
+            <ion-row>
+              <ion-col size="12">
+                <div class="titulo_formulario fuente-titulo">
+                  Notificación
+                </div>
+                <div class="espacio_formulario">
+                  <ion-select placeholder="Seleccionar notificacion"  formControlName="lista_notificacion_seleccionados" [multiple]="true">
+                    <ion-select-option *ngFor="let v of lista_notificacion" [value]="v.id_notificacion" >{{v.notificacion}}</ion-select-option>
+                  </ion-select>
+                </div>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col size="12">
+                <br>
+                <div class="espacio_formulario">
+                  <ion-button color="primary" type="submit" [disabled]="form_geocerca.invalid" >Aceptar</ion-button>
+                </div>
+                <div class="espacio_formulario">
+                  <ion-button color="medium" (click)="CerrarModal()">Cancelar</ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+
+        </form>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

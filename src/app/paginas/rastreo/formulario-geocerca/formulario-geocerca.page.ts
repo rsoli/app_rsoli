@@ -77,7 +77,7 @@ export class FormularioGeocercaPage implements OnInit {
 		const { layerType, layer } = e;
 		this.BorrarArea();
 		this.tipo_area="";
-		this.area="";console.log("ver area ",this.area);
+		this.area="";
 		console.log("Layer type ",layerType	);
 		if (layerType === "polygon") {
 			this.tipo_area="Polígono";

@@ -24,6 +24,54 @@
     // letter-spacing: 0.1rem;
 }
 
+.boton_filtro{
+
+    background-color: #fff;width: 33px;height: 33px; text-align: center;  display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top:80px;
+    margin-left: 11px;
+    position: absolute;
+    z-index: 1000;
+
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    color: rgb(5, 5, 5);
+  
+}
+
+ion-select  {
+    border: 1px solid rgba(173, 168, 168, 0.2);
+    width: 100%;
+    font-family: 'Verdana';
+}
+ion-input{
+    border: 1px solid rgba(173, 168, 168, 0.2);
+    width: 100%;
+    font-family: 'Verdana';
+}
+ion-button{
+    width: 100%;
+    --ion-color-primary: #2599f7;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    height: 40px;
+}
+ion-toolbar {
+    --color: #ffffff;
+    --background:  #2196f3;
+    // --background: linear-gradient( #1585cfee 40%, #147ec5ee   65%);
+    --border-width: 0px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    font-size: 1.0rem;
+    font-family: 'Verdana';
+}
 
   
  

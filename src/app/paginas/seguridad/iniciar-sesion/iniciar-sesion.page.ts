@@ -42,6 +42,8 @@ export class IniciarSesionPage implements OnInit {
   IniciarFormulario(){
 
     if(localStorage.getItem('accesos') != undefined){
+      this.AppComponent.correo_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.correo;
+      this.AppComponent.persona_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.persona;
       this.router.navigate(['/inicio']); 
     }
 
