@@ -39,6 +39,10 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/rastreo/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
   },
   {
+    path: 'mantenimiento',
+    loadChildren: () => import('./paginas/rastreo/mantenimiento/mantenimiento.module').then( m => m.MantenimientoPageModule)
+  },
+  {
     path: '',
     redirectTo: 'iniciar-sesion',
     pathMatch: 'full'
