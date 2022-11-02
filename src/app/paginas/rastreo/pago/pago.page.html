@@ -1,43 +1,27 @@
-<app-header titulo="Pagos realizados" boton_atras="true">
+<app-header titulo="PAGOS REALIZADOS" boton_atras="true">
 </app-header>
 
 <ion-content>
 
   <ion-list>
-    <div style="background: #fff;">
+    <div class="fondo">
         <ion-row *ngFor="let item of lista_pagos" >
             <ion-col size="12">
-                <div class="btnprincipal" 
-                style="
-                margin-top: 4px; 
-                margin-bottom: 4px; 
-                margin-left: 20px; 
-                margin-right: 20px; 
-                border-radius: 20px;
-                background:#fff;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
-                border-left: 4px solid #2196f3 !important;
-
-                "
-                >
+                <div class="btnprincipal">
                     
                     <ion-row >             
                         <ion-col size="12" style="margin: 0px;padding: 0px;" >
                             <div>
                                 <ion-row>
                                   <ion-col size="12" style="padding: 0px;margin: 0px;">
-                                    <div  style="height: 50px; border-top-left-radius: 20px;border-top-right-radius: 20px;color: #fff;font-weight: bold;">
+                                    <div class="gabi">
                                       <ion-row>
 
                                         <ion-col size="9">
-                                          <div style="text-align: left; 
-                                          padding-top: 12px;font-family: 'Verdana';
-                                          font-size: 0.9rem;
-                                          text-transform: uppercase;color: rgb(139, 140, 139);padding-left: 15px;
-                                          ">
-                                            {{item.nombre}} {{item.apellido_paterno}} {{item.apellido_materno}}
+                                          <div class="tarjeta-titulo2" style="color: #EEBD5D;">
+                                            PAGO N°: 1 
                                           </div>
+                                          
                                         </ion-col>
 
                                         <ion-col size="2">
@@ -66,58 +50,61 @@
                                     <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 0px;">
                                       <ion-row>
                                         <ion-col size="6">
- 
-                                          
+                                          <div class="imagen">
                                             <div class="tarjeta-titulo">
-                                                Fecha pago 
+                                              Nombre
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              {{item.nombre}} {{item.apellido_paterno}} {{item.apellido_materno}}
+                                            </div>
+                                            <div class="tarjeta-titulo">
+                                              Fecha pago 
                                             </div>
                                             <div class="tarjeta-descripcion">
                                                 <div *ngIf="item.fecha_pago!=null;">{{item.fecha_pago}}</div>
                                                 <div *ngIf="item.fecha_pago==null;">No definido</div>
       
                                             </div>
+                                            
                                             <div class="tarjeta-titulo">
-                                                Fecha inicio 
+                                              Num. dispositivos
                                             </div>
                                             <div class="tarjeta-descripcion">
-                                              <div *ngIf="item.fecha_inicio!=null;">{{item.fecha_inicio}}</div>
-                                              <div *ngIf="item.fecha_inicio==null;">No definido</div>
-      
+                                              <div *ngIf="item.cantidad_vehiculos!=null;">{{item.cantidad_vehiculos}}</div>
+                                              <div *ngIf="item.cantidad_vehiculos==null;">No definido</div>
                                             </div>
-                                            <div class="tarjeta-titulo">
-                                              Fecha fin 
-                                            </div>
-                                            <div class="tarjeta-descripcion">
-                                              <div *ngIf="item.fecha_fin!=null;">{{item.fecha_fin}}</div>
-                                              <div *ngIf="item.fecha_fin==null;">No definido</div>
-                                            </div>
-
+                                            
+                                          </div>
                                         </ion-col>
     
                                         <ion-col size="6">
- 
-                                          <div class="tarjeta-titulo">
-                                            Celular
+                                          <div class="contenido-tarjeta">
+                                            
+  
+  
+                                            <!-- <div class="tarjeta-titulo">
+                                              Celular
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              <div *ngIf="item.celular!=null;">{{item.celular}}</div>
+                                              <div *ngIf="item.celular==null;">No definido</div>
+                                            </div> -->
+                                            <div class="tarjeta-titulo">
+                                              Mes pagado
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              <div *ngIf="item.celular!=null;" style="color:#EEBD5D;">Agosto</div>
+                                              <div *ngIf="item.celular==null;">No definido</div>
+                                            </div>
+                                            
+                                            <div class="tarjeta-titulo">
+                                              Total pago
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              <div *ngIf="item.sub_total!=null;">{{item.sub_total}}</div>
+                                              <div *ngIf="item.sub_total==null;">No definido</div>
+                                            </div>
                                           </div>
-                                          <div class="tarjeta-descripcion">
-                                            <div *ngIf="item.celular!=null;">{{item.celular}}</div>
-                                            <div *ngIf="item.celular==null;">No definido</div>
-                                          </div>
-                                          <div class="tarjeta-titulo">
-                                            Cant. dispositivos
-                                          </div>
-                                          <div class="tarjeta-descripcion">
-                                            <div *ngIf="item.cantidad_vehiculos!=null;">{{item.cantidad_vehiculos}}</div>
-                                            <div *ngIf="item.cantidad_vehiculos==null;">No definido</div>
-                                          </div>
-                                          <div class="tarjeta-titulo">
-                                            Total pago
-                                          </div>
-                                          <div class="tarjeta-descripcion">
-                                            <div *ngIf="item.sub_total!=null;">{{item.sub_total}}</div>
-                                            <div *ngIf="item.sub_total==null;">No definido</div>
-                                          </div>
-
                                         </ion-col>
                                       </ion-row>
                                     </div>

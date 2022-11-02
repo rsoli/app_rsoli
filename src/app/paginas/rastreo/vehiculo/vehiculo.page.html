@@ -1,33 +1,21 @@
-<app-header titulo="Lista de vehículos" boton_atras="true">
+<app-header titulo="LISTA DE DISPOSITIVOS" boton_atras="true">
 </app-header>
 
 
 <ion-content>
 
   <ion-list>
-    <div style="background: #fff;">
+    <div class="fondo">
         <ion-row *ngFor="let item of lista_vehiculos" >
             <ion-col size="12">
-                <div class="btnprincipal" 
-                style="
-                margin-top: 4px; 
-                margin-bottom: 4px; 
-                margin-left: 20px; 
-                margin-right: 20px; 
-                border-radius: 20px;
-                background:#fff;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-                border-left: 4px solid #2196f3 !important;
-
-                "
-                >
+                <div class="btnprincipal">
                     
                     <ion-row >             
                         <ion-col size="12" style="margin: 0px;padding: 0px;" >
                             <div>
                                 <ion-row>
                                   <ion-col size="12" style="padding: 0px;margin: 0px;">
-                                    <div  style="height: 50px; border-top-left-radius: 20px;border-top-right-radius: 20px;color: #fff;font-weight: bold;">
+                                    <div class="gabi">
                                       <ion-row>
                                         <!-- <ion-col size="3">
                                           <div style="text-align: right; padding-top: 12px;font-size: 1.3rem;text-transform: uppercase;color: #2196f3;">
@@ -35,23 +23,22 @@
                                           </div>
                                         </ion-col> -->
                                         <ion-col size="9">
-                                          <div style="text-align: left; 
-                                          padding-top: 12px;font-family: 'Verdana';
-                                          font-size: 0.9rem;
-                                          text-transform: uppercase;color: rgb(139, 140, 139);padding-left: 15px;
-                                          ">
+                                          <div class="tarjeta-titulo2">
                                             
-                                            PLACA {{item.placa}}
+                                          DISPOSITIVO N° 1: <b class="tarjeta-descripcion">{{item.placa}}</b> 
+                                            
                                           </div>
                                         </ion-col>
+                                        <!-- no se muestra -->
                                         <ion-col size="3">
-                                          <div style="text-align: right;padding-right: 20px; padding-top: 10px; color: #007bff;">
+                                          <div style="text-align: right;padding-right: 20px; padding-top: 10px; color: #1f1f1f;">
                                             <ion-icon (click)="mostrar_opciones_vechiulo(item.placa,item.linea_gps,item.id_vehiculo)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
                                           </div>
                                         </ion-col>
+                                        <!-- no se muestra -->
                                       </ion-row>
 
-
+                                      
                                     </div>
                                   </ion-col>
                                 </ion-row>
@@ -69,21 +56,21 @@
                                   <ion-col size="12">
                                     <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 0px;">
                                       <ion-row>
-                                        <ion-col size="6">
-                                            <div class="tarjeta-titulo">
-                                                Placa
-                                            </div> 
-                                            <div class="tarjeta-descripcion">
-                                              <div *ngIf="item.placa!=null;">{{item.placa}}</div>
-                                              <div *ngIf="item.placa==null;">No definido</div>             
+                                        <ion-col size="7">
+                                            <div class="imagen">
+                                              <img src="./assets/dispositivos/moto.png" alt="">
                                             </div>
+                                        </ion-col>
+    
+                                        <ion-col size="5">
+                                          <div class="contenido-tarjeta">
                                             <div class="tarjeta-titulo">
-                                                Modelo 
+                                              Modelo 
                                             </div>
                                             <div class="tarjeta-descripcion">
                                               <div *ngIf="item.modelo!=null;">{{item.modelo}}</div>
                                               <div *ngIf="item.modelo==null;">No definido</div>
-    
+
                                               
                                             </div>
                                             <div class="tarjeta-titulo">
@@ -93,32 +80,31 @@
                                               <div *ngIf="item.cilindrada!=null;">{{item.cilindrada}}</div>
                                               <div *ngIf="item.cilindrada==null;">No definido</div>
                                             </div>
-                                        </ion-col>
-    
-                                        <ion-col size="6">
-                                          <div class="tarjeta-titulo">
-                                              Marca 
+                                            <div class="tarjeta-titulo">
+                                                Marca 
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                                <div *ngIf="item.marca!=null;">{{item.marca}}</div>
+                                                <div *ngIf="item.marca==null;">No definido</div>
+      
+                                            </div>
+                                            <div class="tarjeta-titulo">
+                                                Color 
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              <div *ngIf="item.color!=null;">{{item.color}}</div>
+                                              <div *ngIf="item.color==null;">No definido</div>
+      
+                                            </div>
+                                            <div class="tarjeta-titulo">
+                                              Regional 
+                                            </div>
+                                            <div class="tarjeta-descripcion">
+                                              <div *ngIf="item.nombre_departamento!=null;">{{item.nombre_departamento}}</div>
+                                              <div *ngIf="item.nombre_departamento==null;">No definido</div>
+                                            </div>
                                           </div>
-                                          <div class="tarjeta-descripcion">
-                                              <div *ngIf="item.marca!=null;">{{item.marca}}</div>
-                                              <div *ngIf="item.marca==null;">No definido</div>
-    
-                                          </div>
-                                          <div class="tarjeta-titulo">
-                                              Color 
-                                          </div>
-                                          <div class="tarjeta-descripcion">
-                                            <div *ngIf="item.color!=null;">{{item.color}}</div>
-                                            <div *ngIf="item.color==null;">No definido</div>
-    
-                                          </div>
-                                          <div class="tarjeta-titulo">
-                                            Regional 
-                                          </div>
-                                          <div class="tarjeta-descripcion">
-                                            <div *ngIf="item.nombre_departamento!=null;">{{item.nombre_departamento}}</div>
-                                            <div *ngIf="item.nombre_departamento==null;">No definido</div>
-                                          </div>
+                                         
                                         </ion-col>
                                       </ion-row>
                                     </div>

@@ -1,26 +1,13 @@
-<app-header titulo="Lista de usuarios" boton_atras="true">
+<app-header titulo="LISTA DE USUARIOS" boton_atras="true">
 </app-header>
 
 <ion-content>
 
     <ion-list>
-        <div style="background: #fff;">
+        <div class="fondo">
             <ion-row *ngFor="let item of lista_usuarios" >
                 <ion-col size="12">
-                    <div class="btnprincipal" 
-                    style="
-                    margin-top: 4px; 
-                    margin-bottom: 4px; 
-                    margin-left: 7px; 
-                    margin-right: 7px; 
-                    border-radius: 20px;
-                    background:#fff;
-                    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    
-                    border-left: 4px solid #2196f3 !important;
-    
-                    "
-                    >
+                    <div class="btnprincipal">
                         
                         <ion-row >             
                             <ion-col size="12" style="margin: 0px;padding: 0px;" >
@@ -30,13 +17,9 @@
                                         <div  style="height: 50px; border-top-left-radius: 20px;border-top-right-radius: 20px;color: #fff;font-weight: bold;text-align: center;">
                                           <ion-row>
                                             <ion-col size="9">
-                                              <div style="text-align: left; 
-                                              padding-top: 12px;font-family: 'Verdana';
-                                              font-size: 0.9rem;
-                                              text-transform: uppercase;color: rgb(139, 140, 139);padding-left: 15px;
-                                              ">
-                                                
-                                                USUARIO {{item.usuario}}
+                        
+                                              <div class="tarjeta-titulo2" style="color: #EEBD5D;">
+                                                NOMBRE: <b class="tarjeta-descripcion">{{item.persona}}</b>
                                               </div>
                                             </ion-col>
                                             <ion-col size="3">
@@ -63,10 +46,17 @@
                                       <ion-col size="12">
                                         <div style="padding-left: 5px;padding-right: 5px;padding-bottom: 10px;padding-top: 0px;text-align: center;">
                                           <ion-row>
+                                            <ion-col size="5">
+                                               <div class="imagen">
+                                                <img src="./assets/dispositivos/usuario.png" alt="">
+                                               </div>
+                                                
+                                            </ion-col>
+        
                                             <ion-col size="7">
-                                               
+                                              <div class="contenido-tarjeta">
                                                 <div class="tarjeta-titulo">
-                                                    Correo 
+                                                  Correo 
                                                 </div>
                                                 <div class="tarjeta-descripcion">
                                                   <div *ngIf="item.correo!=null;">{{item.correo}}</div>
@@ -75,30 +65,13 @@
                                                   
                                                 </div>
                                                 <div class="tarjeta-titulo">
-                                                  Persona
+                                                  Usuario
                                                 </div>
                                                 <div class="tarjeta-descripcion">
-                                                    <div *ngIf="item.persona!=null;">{{item.persona}}</div>
+                                                    <div *ngIf="item.persona!=null;">{{item.usuario}}</div>
                                                     <div *ngIf="item.persona==null;">No definido</div>
           
                                                 </div>
-                                            </ion-col>
-        
-                                            <ion-col size="5">
-                                              <div class="tarjeta-titulo">
-                                                  Próximo pago 
-                                              </div>
-                                              <div class="tarjeta-descripcion">
-                                                <div *ngIf="item.fecha_fin!=null;">{{item.fecha_fin}}</div>
-                                                <div *ngIf="item.fecha_fin==null;">No definido</div>
-                                              </div>
-
-                                              <div class="tarjeta-titulo">
-                                                Usuario
-                                              </div>
-                                              <div class="tarjeta-descripcion">
-                                                <div *ngIf="item.usuario!=null;">{{item.usuario}}</div>
-                                                <div *ngIf="item.usuario==null;">No definido</div>
                                               </div>
                                            
                                             </ion-col>

@@ -1,21 +1,12 @@
-.tarjeta-titulo{
-    // font-size: 15px;
-    color: #616161;
-    font-weight: bold;
-    padding-top: 4px;
-    text-align: left;
 
-    font-size: 0.9rem;
-    font-family: 'Verdana';
-    // letter-spacing: 0.1rem;
-
+.imagen{
+    background-color: #F2F2F2;
+    padding: 15px;
+    margin-top: 10px;
+  }
+.imagen img{
+    width: 50px;
 }
-.tarjeta-descripcion{
-    color: #616161;
-    text-align: left;
-
-    font-size: 0.8rem;
-    font-family: 'Verdana';
-    // font-weight: bold;
-    // letter-spacing: 0.1rem;
+.contenido-tarjeta{
+    margin-top: 15px;
 }
