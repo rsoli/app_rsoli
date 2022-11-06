@@ -5,7 +5,7 @@
 
   <ion-list>
     <div class="fondo">
-        <ion-row *ngFor="let item of lista_pagos" >
+        <ion-row *ngFor="let item of lista_pagos; let i = index" >
             <ion-col size="12">
                 <div class="btnprincipal">
                     
@@ -19,7 +19,7 @@
 
                                         <ion-col size="9">
                                           <div class="tarjeta-titulo2" style="color: #EEBD5D;">
-                                            PAGO N°: 1 
+                                            PAGO N°: {{i+1}} 
                                           </div>
                                           
                                         </ion-col>
@@ -93,7 +93,7 @@
                                               Mes pagado
                                             </div>
                                             <div class="tarjeta-descripcion">
-                                              <div *ngIf="item.celular!=null;" style="color:#EEBD5D;">Agosto</div>
+                                              <div *ngIf="item.celular!=null;" style="color:#EEBD5D;">{{item.mes_pagado}}</div>
                                               <div *ngIf="item.celular==null;">No definido</div>
                                             </div>
                                             

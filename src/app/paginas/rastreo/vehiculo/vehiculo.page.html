@@ -6,7 +6,7 @@
 
   <ion-list>
     <div class="fondo">
-        <ion-row *ngFor="let item of lista_vehiculos" >
+        <ion-row *ngFor="let item of lista_vehiculos; let i = index" >
             <ion-col size="12">
                 <div class="btnprincipal">
                     
@@ -25,7 +25,7 @@
                                         <ion-col size="9">
                                           <div class="tarjeta-titulo2">
                                             
-                                          DISPOSITIVO N° 1: <b class="tarjeta-descripcion">{{item.placa}}</b> 
+                                          DISPOSITIVO N° {{i+1}}: <b class="tarjeta-descripcion">{{item.placa}}</b> 
                                             
                                           </div>
                                         </ion-col>
@@ -57,8 +57,14 @@
                                     <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 0px;">
                                       <ion-row>
                                         <ion-col size="7">
-                                            <div class="imagen">
-                                              <img src="./assets/dispositivos/moto.png" alt="">
+                                            <div class="imagen" *ngIf="item.codigo=='rau'">
+                                              <img src="./assets/dispositivos/coche.png" alt="">
+                                            </div>
+                                            <div class="imagen" *ngIf="item.codigo=='rmo'">
+                                              <img src="./assets/dispositivos/motocicleta.png" alt="">
+                                            </div>
+                                            <div class="imagen" *ngIf="item.codigo=='rce'">
+                                              <img src="./assets/dispositivos/cel.png" alt="">
                                             </div>
                                         </ion-col>
     
