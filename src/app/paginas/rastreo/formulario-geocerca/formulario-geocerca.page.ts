@@ -321,7 +321,7 @@ export class FormularioGeocercaPage implements OnInit {
 	this.geocerca.area=this.area;
 	this.geocerca.tipo_geocerca=this.tipo_area;
 	this.geocerca.id=this.route.snapshot.params.id;
-	console.log("ver res ",this.geocerca);
+	//console.log("ver res ",this.geocerca);
 	
 
    
