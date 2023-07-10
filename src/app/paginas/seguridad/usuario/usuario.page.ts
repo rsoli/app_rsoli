@@ -3,6 +3,7 @@ import { UsuarioModelo } from '../../../modelos/usuario-modelo';
 import { UsuarioService } from '../../../servicios/usuario.service';
 import { LoadingController,ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -20,13 +21,14 @@ export class UsuarioPage implements OnInit {
     private loadingController:LoadingController,
     public toastController: ToastController,
     private alertController: AlertController,
-
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.GetUsuario();
   }
   async GetUsuario(){
+
     await this.mostrar_loading();
     this.usuario_servicio.get_usuarios().subscribe(data=>{
 
@@ -37,7 +39,8 @@ export class UsuarioPage implements OnInit {
     },error=>{
       console.log("errores  ",error);
       this.ocultar_loading();
-
+      this.alerta("Revise su conexión a internet si el problema persiste vuelve a iniciar sesión");
+      this.router.navigate(['/inicio']); 
     })
   }
 

@@ -51,6 +51,12 @@ export class GeocercaPage implements OnInit {
 			this.ocultar_loading();
 			this.lista_geocercas=JSON.parse(JSON.stringify(data)).lista_geocercas;
 			console.log("ver res ",this.lista_geocercas);
+		  },
+		  error=>{
+			console.log("errores  ",error);
+			this.ocultar_loading();
+			this.alerta("Revise su conexión a internet si el problema persiste vuelve a iniciar sesión");
+			this.router.navigate(['/inicio']); 
 		  })
 	}
 	SeleccionarGeocerca(lista_geocercas:GeocercaModelo){

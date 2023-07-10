@@ -32,7 +32,7 @@
                                         <!-- no se muestra -->
                                         <ion-col size="3">
                                           <div style="text-align: right;padding-right: 20px; padding-top: 10px; color: #1f1f1f;">
-                                            <ion-icon (click)="mostrar_opciones_vechiulo(item.placa,item.linea_gps,item.id_vehiculo)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
+                                            <ion-icon (click)="mostrar_opciones_vechiulo(item.placa,item.linea_gps,item.id_vehiculo,item.activar_motor,item.desactivar_motor)" style="width: 25px;" name="ellipsis-vertical-outline"></ion-icon>
                                           </div>
                                         </ion-col>
                                         <!-- no se muestra -->
@@ -65,6 +65,9 @@
                                             </div>
                                             <div class="imagen" *ngIf="item.codigo=='rce'">
                                               <img src="./assets/dispositivos/cel.png" alt="">
+                                            </div>
+                                            <div class="imagen" *ngIf="item.codigo=='rpe'">
+                                              <img src="./assets/dispositivos/personas.png" alt="">
                                             </div>
                                         </ion-col>
     

@@ -22,5 +22,6 @@ export class VehiculoModelo {
     id_tipo_servicio:number=0;
     tipo_servicio:String="";
     codigo:String="";
-
+    activar_motor:String="";
+    desactivar_motor:String="";
 }

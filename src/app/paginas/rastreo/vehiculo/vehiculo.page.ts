@@ -10,6 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { GeocercaModelo } from 'src/app/modelos/geocerca-modelo';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehiculo',
@@ -56,6 +57,7 @@ export class VehiculoPage implements OnInit {
     private loadingController:LoadingController,
     public toastController: ToastController,
     private alertController: AlertController,
+    private router: Router
 
     // private animationCtrl: AnimationController
   ) { }
@@ -83,19 +85,21 @@ export class VehiculoPage implements OnInit {
       
       this.ocultar_loading();
       this.lista_vehiculos=JSON.parse(JSON.stringify(data)).vehiculo;
-      this.rotate();
+      //this.rotate();
 
     },error=>{
       console.log("errores  ",error);
       this.ocultar_loading();
+      this.alerta("Revise su conexión a internet si el problema persiste vuelve a iniciar sesión");
+      this.router.navigate(['/inicio']); 
 
     })
   }
-  mostrar_opciones_vechiulo(placa:string,linea_gps:string,id_vehiculo){
+  mostrar_opciones_vechiulo(placa:string,linea_gps:string,id_vehiculo,activar_motor:string,desactivar_motor:string){
     
-    this.presentActionSheet(placa,linea_gps,id_vehiculo);
+    this.presentActionSheet(placa,linea_gps,id_vehiculo,activar_motor,desactivar_motor);
   }
-  async apagar_motor(apagar:boolean,linea_gps:string) {
+  async apagar_motor(apagar:boolean,linea_gps:string,comando:string) {
 
     const alert = await this.alertController.create({
       header: 'Alerta',
@@ -113,11 +117,13 @@ export class VehiculoPage implements OnInit {
           
           if(apagar){
 
-            this.enviar_sms(linea_gps, 'DY');
+            this.enviar_sms(linea_gps, comando);
+            //this.enviar_sms(linea_gps, 'DY');
 
           }else{
 
-            this.enviar_sms(linea_gps, 'KY');
+            this.enviar_sms(linea_gps, comando);
+            //this.enviar_sms(linea_gps, 'KY');
 
           }
 
@@ -136,7 +142,7 @@ export class VehiculoPage implements OnInit {
       console.log("ver error ",error);
     });
   }
-  async presentActionSheet(placa,linea_gps,id_vehiculo) {
+  async presentActionSheet(placa,linea_gps,id_vehiculo,activar_motor,desactivar_motor) {
     const actionSheet = await this.actionSheetController.create({
 
       header: 'VEHÍCULO '+placa,
@@ -147,7 +153,7 @@ export class VehiculoPage implements OnInit {
         icon: 'lock-closed-outline',
         data: 10,
         handler: () => {
-          this.apagar_motor(false,linea_gps);
+          this.apagar_motor(false,linea_gps,activar_motor);
         }
       },
       {
@@ -160,7 +166,7 @@ export class VehiculoPage implements OnInit {
         },
         handler: () => {
           // console.log('Delete clicked');
-          this.apagar_motor(true,linea_gps);
+          this.apagar_motor(true,linea_gps,desactivar_motor);
         }
       },
       {

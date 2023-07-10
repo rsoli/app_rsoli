@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MonitoreoService } from '../../../servicios/monitoreo.service';
 import { LoadingController } from '@ionic/angular';
 import { Platform, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pago',
@@ -17,6 +18,7 @@ export class PagoPage implements OnInit {
     private monitoreo_servicio:MonitoreoService,
     private loadingController:LoadingController,
     public toastController: ToastController,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,8 @@ export class PagoPage implements OnInit {
     },
     error=>{
       this.ocultar_loading();
+			this.alerta("Revise su conexión a internet si el problema persiste vuelve a iniciar sesión");
+			this.router.navigate(['/inicio']); 
     })
   }
   async mostrar_loading() {

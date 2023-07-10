@@ -39,12 +39,15 @@ export class AppComponent implements OnInit {
       this.menu.close('sidebar');
       this.menu.enable(false, 'sidebar');
       this.router.navigate(['/iniciar-sesion']); 
-      console.log("cerrar sesion ",data);
+      console.log("cerrar sesion prueba",data);
       
     },
     error=>{
-      this.alerta("Error, Verifique su conexión de Internet");
-      console.log("ver error ",error.error.message);  
+      localStorage.removeItem("accesos");
+      this.menu.enable(false, 'sidebar');
+      this.router.navigate(['/iniciar-sesion']); 
+      //this.alerta("Error, Verifique su conexión de Internet");
+      //console.log("ver error ",error.error.message);  
       this.ocultar_loading();
     })
   }

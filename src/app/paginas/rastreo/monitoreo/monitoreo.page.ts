@@ -11,6 +11,9 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import * as moment from 'moment-timezone';
 import { MonitoreoService } from '../../../servicios/monitoreo.service';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-monitoreo',
@@ -55,16 +58,17 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
     private monitoreo_servicio:MonitoreoService,
     private loadingController:LoadingController,
     public toastController: ToastController,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.platform.ready().then(() => {
-      this.IniciarMapa();
       this.cargarTipoMonitoreo();
       this.IniciarFiltros();
-    });
   }
-
+  //carga despues de terminar la nimacion
+  ionViewDidEnter(){
+    this.IniciarMapa();
+  }
   IniciarMapa(){
 
     var  osm, controlCapas;
@@ -77,29 +81,35 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
       zoomAnimation: false,
       markerZoomAnimation: false,
 
-      renderer: L.canvas()
+      renderer: L.canvas(),
+      
     })
 
+    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap',
+     // attribution: '© OpenStreetMap',
+      attribution:''
     }).addTo(this.map)
     
     setTimeout(() => {
       this.map.invalidateSize();
-    }, 10);
+    }, 0);
 
     osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       minZoom: 1,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"/>OpenStreetMap</a>'
+      //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"/>OpenStreetMap</a>'
+      attribution:''
     }).addTo(this.map);
 
     var OpenStreetMap_HOT = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"/>OpenStreetMap</a>'
+        //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"/>OpenStreetMap</a>'
+        attribution:''
     });
 
     var Stamen_Toner = L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com"/>Stamen Design</a>',
+        //attribution: 'Map tiles by <a href="http://stamen.com"/>Stamen Design</a>',
+        attribution:'',
         subdomains: 'abcd',
         minZoom: 0,
         maxZoom: 20
@@ -108,18 +118,21 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
     var Esri_WorldStreetMap = 
         L.tileLayer(
             'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri'
+                //attribution: 'Tiles &copy; Esri'
+                attribution:''
             });
 
     var Esri_WorldTopoMap =
         L.tileLayer(
             'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri'
+                //attribution: 'Tiles &copy; Esri',
+                attribution:''
             });
     var Esri_WorldImagery =
         L.tileLayer(
             'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri'
+                //attribution: 'Tiles &copy; Esri'
+                attribution:''
             });
 
 
@@ -133,21 +146,15 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
         'Satelite': Esri_WorldImagery,
     };
 
-    var SafeCast = L.tileLayer('https://s3.amazonaws.com/te512.safecast.org/{z}/{x}/{y}.png', {
-        maxZoom: 16,
-        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href=" ">CC-BY-SA</a>)'
-    });
-    // var overlay = {"Safecat":SafeCast}
-
-
     var controlEscala;
 
-    // controlCapas = L.control.layers(mapaBase, overlay);
     controlCapas = L.control.layers(mapaBase);
     controlCapas.addTo(this.map);
+    
 
     controlEscala = L.control.scale();
     controlEscala.addTo(this.map);
+    
 
    
   }
@@ -166,6 +173,9 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
   }
   async IniciarFiltros(){
 
+    this.vehiculo=JSON.parse(localStorage.getItem('accesos')|| '{}').Vehiculo;
+
+    /*
     await this.mostrar_loading();
     this.monitoreo_servicio.get_filtros_monitoreo().subscribe(data=>{
       this.ocultar_loading();
@@ -173,7 +183,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
     },
     error=>{
       this.ocultar_loading();
-    })
+    })*/
 
   }
   cerrar_filtros() {
@@ -235,6 +245,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
       error=>{
         this.ocultar_loading();
         console.log("ver errores ",error);
+        this.alerta("Revise su conexión a internet si el problema persiste vuelve a iniciar sesión");
       })
       this.bandera_timer=true;
 
@@ -282,14 +293,16 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
               icon: L.icon({
                 iconSize: [25, 31],
                 iconAnchor: [12, 31],
+                popupAnchor: [0, -29],
                 iconUrl: './assets/iconos/marcadores/ubicacion/ubi-azul.svg',
               })
             };
           }else{
             icon = {
               icon: L.icon({
-                iconSize: [25, 31],
-                iconAnchor: [12, 31],
+                    iconSize: [25, 31],
+                    iconAnchor: [12, 31],
+                    popupAnchor: [0, -29], 
                 iconUrl: './assets/iconos/marcadores/ubicacion/ubi-rojo.svg',
               })
             };
@@ -301,6 +314,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
               icon: L.icon({
                 iconSize: [25, 31],
                 iconAnchor: [12, 31],
+                popupAnchor: [0, -29],
                 iconUrl: './assets/iconos/marcadores/ubicacion/ubi-azul.svg',
               })
             };
@@ -323,6 +337,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
                   icon: L.icon({
                     iconSize: [25, 31],
                     iconAnchor: [12, 31],
+                    popupAnchor: [0, -29],
                     iconUrl: './assets/iconos/marcadores/ubicacion/ubi-azul.svg',
                   })
                 };
@@ -331,6 +346,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
                   icon: L.icon({
                     iconSize: [25, 31],
                     iconAnchor: [12, 31],
+                    popupAnchor: [0, -29],
                     iconUrl: './assets/iconos/marcadores/ubicacion/ubi-amarillo.svg'
                   })
                 };
@@ -356,7 +372,7 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
           " <br> <b>Velocidad :</b>  "+parseFloat(indice.speed).toFixed(2)+" Km/h"+
           " <br> <b>Bateria :</b>  "+parseFloat(indice.bateria_vehiculo).toFixed(2)+" Volt."+
           " <br> <b>Ubicación :</b> </br>"+indice.address+ 
-          "<div> ");
+          "<div> ").addTo(this.map);
         }else{
 
           // this.marker = L.marker([indice.latitude, indice.longitude], icon).addTo(this.map);
@@ -375,8 +391,8 @@ export class MonitoreoPage implements OnInit ,OnDestroy{
         this.lista_marcadores.push(this.marker);   // ver si quitar o no por cluster agregado
 
         if( String( this.tipo_monitoreo_seleccionado) =="tiempo_real"){
-          this.markerCluster.addLayer(this.marker); // agregar cluster
-          this.map.addLayer(this.markerCluster);// agregar cluster
+          //this.markerCluster.addLayer(this.marker); // agregar cluster
+          //this.map.addLayer(this.markerCluster);// agregar cluster
         }
 
 
