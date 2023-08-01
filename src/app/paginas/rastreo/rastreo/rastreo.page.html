@@ -1,0 +1,181 @@
+<!-- <app-header titulo="Monitoreo" boton_atras="true">
+</app-header> -->
+<ion-header class="ion-no-border">
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+        <ion-back-button  slot="icon-only" icon="arrow-back-outline" style="color: white ;zoom:0.9" defaultHref="/" text=""  mode="ios"> </ion-back-button> 
+        <div *ngIf="boton_atras=='false' " style="width: 33px; height: 10px; background: rgba(255, 255, 255, 0);"></div>
+    </ion-buttons>
+
+      <div style="text-align: center;margin-top: 5px;padding-bottom: 5px; font-size: 13px;font-weight: bold;">
+        Rastreo
+      </div>
+
+    <!-- <ion-buttons slot="end" (click)="abrir_sidebar()" >
+      <ion-icon style="zoom:2" expand="block"  name="menu-outline"  ></ion-icon>
+    </ion-buttons>  -->
+
+    <div slot="end"  fill="clear" id="open-date-input-2" >
+      <!-- <ion-button (click)="ocultar_detalle()" fill="clear" id="open-date-input-2" >
+        <ion-icon *ngIf="!hide_detalle"  slot="icon-only" name="eye-off-outline" style="color: white;"></ion-icon>
+        <ion-icon *ngIf="hide_detalle"  slot="icon-only"  name="eye-outline" style="color: white;" ></ion-icon>
+      </ion-button> -->
+
+      <!-- <ion-button fill="clear" id="open-date-input-2" id="popover-button" >
+        <ion-icon name="settings-outline" slot="icon-only" style="color: white;"></ion-icon>
+      </ion-button> -->
+      <ion-button fill="clear" id="open-date-input-2" (click)="centrar_mapa()" >
+        <ion-icon name="expand-outline" slot="icon-only" style="color: white;"></ion-icon>
+      </ion-button>
+
+
+      <ion-button (click)="abrir_sidebar()" fill="clear"  >
+        <ion-icon  expand="block"  name="menu-outline"  style="color: white;zoom:2.0"></ion-icon>
+      </ion-button> 
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="style_map1 " id="map3" ></div> 
+  
+  <!-- <div [ngClass]="{'style_map1' : hide_detalle===true,'style_map2' : hide_detalle===false}" id="map3"></div> -->
+
+  <div class="detalle_linea" *ngIf="hide_detalle" style="overflow-y:scroll; overflow-x:hidden;">
+
+      <ion-searchbar [debounce]="1000"  color="primary"  (ionInput)="handleInput($event)" placeholder="Buscar placa"></ion-searchbar>
+      <ion-item class="titulo" >
+        <ion-label>Placa </ion-label>
+        <ion-label>Motor</ion-label>
+        <ion-label>Rutas</ion-label>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let result of lista_dispositivos" button="true" (click)="SeleccionarVehiculo(result);">
+          <ion-label>{{ result.placa }} </ion-label>
+          <ion-label>{{ result.motor }} </ion-label>
+          <ion-label><ion-button size="small" color="warning"  (click)="abrir_modal_rutas(result)"> <ion-icon name="funnel-outline"></ion-icon>&nbsp;Ver</ion-button></ion-label>
+        </ion-item>
+        <div>
+          <div style="color: green;font-size: 1rem;margin: 14px !important;">Nota: Seleccione un vehiculo para monitorear su movimiento</div>
+        </div>
+      </ion-list>
+
+
+  </div>
+
+
+  <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-content>
+        <ion-list>
+          <ion-item [button]="true" [detail]="false">Rutas</ion-item>
+          <ion-item [button]="true" [detail]="false">Viajes</ion-item>
+          <ion-item [button]="true" [detail]="false">Parqueos</ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+
+
+
+
+
+
+
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+            <div style="text-align: center;margin-top: 5px;padding-bottom: 5px;font-weight: bold;">
+              PLACA {{vehiculo_seleccionado.placa}}
+            </div>
+        </ion-toolbar>
+      </ion-header>
+
+
+      <br>
+      <ion-content class="ion-padding">
+        
+        <ion-item>
+          <ion-label position="stacked">Fecha</ion-label>
+          <ion-input
+          value="{{ fecha_ratreo_texto  }}"
+          id="trigger_fecha"
+          class="ion-text-start">
+          </ion-input>
+          <ion-popover trigger="trigger_fecha" size="cover" >
+            <ng-template>
+              <ion-datetime
+                presentation="date"
+                [(ngModel)]="fecha_ratreo"
+                (ngModelChange)="formatoFecha($event)"
+                displayFormat="DD/MM/YYYY" 
+                
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Hora inicio</ion-label>
+          <ion-input
+          value="{{ hora_inicio }}"
+          id="trigger_hora_inicio"
+          class="ion-text-start" >
+          </ion-input>
+          <ion-popover trigger="trigger_hora_inicio" size="cover" >
+            <ng-template>
+              <ion-datetime
+                presentation="time"
+                [(ngModel)]="hora_inicio"
+                locale="sl-SI">
+              </ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Hora fin</ion-label>
+          <ion-input
+          value="{{ hora_fin }}"
+          id="trigger_fecha_fin"
+          class="ion-text-start">
+          </ion-input>
+          <ion-popover trigger="trigger_fecha_fin" size="cover">
+            <ng-template>
+              <ion-datetime
+                presentation="time"
+                [(ngModel)]="hora_fin"
+                locale="sl-SI"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <br>
+        <ion-row class="ion-no-border">
+          <ion-col size="6" style="border: 0px !important;">
+            <ion-button style="width: 100%;border-radius: 7px;height: 40px;" color="primary" (click)="aplicar_filtros()">Aceptar</ion-button>
+          </ion-col>
+          <ion-col size="6" style="border: 0px !important;">
+            <ion-button style="width: 100%;border-radius: 7px;height: 40px;" color="medium" (click)="cerrar_filtros()">Cancelar</ion-button>
+          </ion-col>
+        </ion-row>
+
+   
+
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+
+</ion-content>

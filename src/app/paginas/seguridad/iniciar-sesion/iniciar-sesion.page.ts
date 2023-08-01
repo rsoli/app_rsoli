@@ -9,6 +9,10 @@ import { LoadingController } from '@ionic/angular';
 import { AppComponent } from '../../../app.component';
 import { MenuController } from '@ionic/angular';
 
+import{TraccarService} from '../../../servicios/traccar.service';
+import { CookieService } from 'ngx-cookie-service';
+
+
 @Component({
   selector: 'app-iniciar-sesion',
   templateUrl: './iniciar-sesion.page.html',
@@ -28,6 +32,9 @@ export class IniciarSesionPage implements OnInit {
     private loadingController:LoadingController,
     private AppComponent:AppComponent,
     private menu: MenuController,
+
+    private traccar:TraccarService,
+    private cookieService: CookieService 
     // private storage: Storage
   ) { }
 
@@ -68,13 +75,11 @@ export class IniciarSesionPage implements OnInit {
       localStorage.setItem('accesos', JSON.stringify(data));
       
 
-      // localStorage.removeItem("accesos");
-      // localStorage.setItem('accesos', JSON.stringify(data)); 
       this.AppComponent.correo_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.correo;
       this.AppComponent.persona_label=JSON.parse(localStorage.getItem('accesos') || '{}').usuario.persona;
-        this.router.navigate(['/inicio']); 
-        console.log("ver datos ",data);
-        
+  
+      this.router.navigate(['/inicio']); 
+      //this.InicarSesion();
       },
       error=>{
         console.log("ver err ",error.error.message);
@@ -88,6 +93,16 @@ export class IniciarSesionPage implements OnInit {
           }
       })
 
+  }
+  InicarSesion(){
+    this.traccar.post_iniciar_sesion().subscribe( data=>{
+
+      this.router.navigate(['/inicio']); 
+    },
+    error=>{
+        console.log("errores ",error);
+        
+    })
   }
   async mostrar_loading() {
     this.loading = await this.loadingController.create({

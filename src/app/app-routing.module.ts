@@ -46,7 +46,16 @@ const routes: Routes = [
     path: '',
     redirectTo: 'iniciar-sesion',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'rastreo',
+    loadChildren: () => import('./paginas/rastreo/rastreo/rastreo.module').then( m => m.RastreoPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./paginas/rastreo/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  
 
 ];
 
